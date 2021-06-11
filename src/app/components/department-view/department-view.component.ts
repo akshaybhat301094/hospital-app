@@ -23,6 +23,7 @@ export class DepartmentViewComponent
 {
   public commonConfig!: ICommonConfig;
   public departmentData!: Array<IDepartmentData>;
+  public isReady = false;
   private hospitalName!: string;
   constructor(private service: HospitalService, private route: ActivatedRoute) {
     super();
@@ -39,6 +40,7 @@ export class DepartmentViewComponent
       .getDepartmentData()
       .pipe(takeUntil(this.componentDestroyed))
       .subscribe((response: IDepartmentData[]) => {
+        this.isReady = true;
         this.departmentData = response.filter(
           (res) => res.hospitalname === this.hospitalName
         );

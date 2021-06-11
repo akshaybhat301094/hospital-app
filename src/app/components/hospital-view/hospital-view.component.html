@@ -3,3 +3,5 @@
   [entityData]="hospitalData"
   (userAction)="triggerUserAction($event)"
 ></app-common-layout>
+
+<app-spinner *ngIf="!isReady"></app-spinner>

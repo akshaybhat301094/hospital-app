@@ -8,6 +8,7 @@ import { HospitalViewComponent } from './components/hospital-view/hospital-view.
 import { DepartmentViewComponent } from './components/department-view/department-view.component';
 import { CommonLayoutComponent } from './components/common-layout/common-layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HospitalViewComponent,
     DepartmentViewComponent,
     CommonLayoutComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,7 @@ export class HospitalViewComponent
 {
   public commonConfig!: ICommonConfig;
   public hospitalData!: Array<IHospitalData>;
+  public isReady = false;
   constructor(private service: HospitalService) {
     super();
   }
@@ -32,6 +33,7 @@ export class HospitalViewComponent
       .getHospitalData()
       .pipe(takeUntil(this.componentDestroyed))
       .subscribe((res) => {
+        this.isReady = true;
         this.hospitalData = res;
       });
   }
