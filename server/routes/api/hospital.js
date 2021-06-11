@@ -20,19 +20,16 @@ router.patch("/:hospitalname", (req, res) => {
     return res.status(401).send({ error: true, msg: "Hospital data missing" });
   }
   const existingList = getHospitalData();
-  const findHospital = existingList.find(
+  const idx = existingList.findIndex(
     (hospital) => hospital.hospitalname === hospitalName
   );
-  if (!findHospital) {
+  if (idx === -1) {
     return res
       .status(409)
       .send({ error: true, msg: "Hospital does not exist" });
   }
-  const filteredList = existingList.filter(
-    (hospital) => hospital.hospitalname !== hospitalName
-  );
-  filteredList.push(data);
-  saveHospitalData(filteredList);
+  existingList[idx] = data;
+  saveHospitalData(existingList);
   res.send({ success: true, msg: "Hospital updated successfully" });
 });
 

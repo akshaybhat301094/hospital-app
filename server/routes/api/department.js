@@ -27,22 +27,18 @@ router.patch("/:departmentname", (req, res) => {
       .send({ error: true, msg: "Department data missing" });
   }
   const existingList = getDepartmentList();
-  const findDepartment = existingList.find(
+  const idx = existingList.findIndex(
     (department) =>
       department.departmentname === departmentName &&
       department.hospitalname === data.hospitalname
   );
-  console.log(findDepartment);
-  if (!findDepartment) {
+  if (idx === -1) {
     return res
       .status(409)
       .send({ error: true, msg: "Department does not exist" });
   }
-  const filteredList = existingList.filter(
-    (department) => department.departmentname !== departmentName
-  );
-  filteredList.push(data);
-  saveDepartmentData(filteredList);
+  existingList[idx] = data;
+  saveDepartmentData(existingList);
   res.send({ success: true, msg: "Department updated successfully" });
 });
 
