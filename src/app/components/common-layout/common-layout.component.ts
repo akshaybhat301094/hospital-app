@@ -8,10 +8,12 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import {
+  AbstractControl,
   Form,
   FormArray,
   FormControl,
   FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -43,6 +45,7 @@ export class CommonLayoutComponent implements OnInit, OnChanges {
   public enableAddMode = true;
   public controls: FormArray = new FormArray([]);
   public addForm: FormGroup = new FormGroup({});
+  public bannerMessage = '';
 
   constructor(private router: Router) {}
 
@@ -171,7 +174,19 @@ export class CommonLayoutComponent implements OnInit, OnChanges {
    */
   public addData(): void {
     if (this.addForm.valid) {
+      const key = this.config.columnConfig[0].field;
       const rawData = this.addForm.getRawValue();
+      const idx = this.entityData.findIndex(
+        (entity: any) => entity[key] === rawData[key]
+      );
+      if (idx) {
+        this.bannerMessage = 'Field already exists';
+        this.initializeAddForm();
+        setTimeout(() => {
+          this.bannerMessage = '';
+        }, 5000);
+        return;
+      }
       this.userAction.emit({
         actionType: ActionType.POST,
         data: rawData,

@@ -85,6 +85,9 @@
               <small *ngIf="!getAddControl(col.field).valid"
                 >Required Field</small
               >
+              <small *ngIf="getAddControl(col.field).alreadyExist">
+                Field already exists
+              </small>
             </div>
           </td>
           <td *ngIf="config.enableViewMode"></td>
@@ -108,6 +111,9 @@
       </table>
     </div>
 
+    <div class="banner_message">
+      {{ bannerMessage }}
+    </div>
     <!-- no results found template -->
     <div
       class="no_records_container"
