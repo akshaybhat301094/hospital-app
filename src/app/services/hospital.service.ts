@@ -11,7 +11,8 @@ import {
   providedIn: 'root',
 })
 export class HospitalService {
-  public baseUrl = 'https://hospital-app-node.herokuapp.com';
+  // deployed app url https://hospital-app-node.herokuapp.com
+  public baseUrl = 'http://localhost:5000';
   constructor(private http: HttpClient) {}
 
   /**
