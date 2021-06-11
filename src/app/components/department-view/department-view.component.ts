@@ -45,6 +45,9 @@ export class DepartmentViewComponent
       });
   }
 
+  /**
+   * department grid config
+   */
   private initializeConfig(): void {
     this.commonConfig = {
       title: 'Department List',
@@ -70,10 +73,10 @@ export class DepartmentViewComponent
     };
   }
 
-  public ngOnDestroy(): void {
-    super.ngOnDestroy();
-  }
-
+  /**
+   * function used to trigger post, put, delete operation
+   * @param userAction user action object to identify tge type of action
+   */
   public triggerUserAction(userAction: IUserAction): void {
     switch (userAction.actionType) {
       case ActionType.DELETE:
@@ -103,5 +106,9 @@ export class DepartmentViewComponent
       default:
         break;
     }
+  }
+
+  public ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

@@ -36,6 +36,9 @@ export class HospitalViewComponent
       });
   }
 
+  /**
+   * hospital grid config
+   */
   private initializeConfig(): void {
     this.commonConfig = {
       title: 'Hospital List',
@@ -57,6 +60,10 @@ export class HospitalViewComponent
     };
   }
 
+  /**
+   * function used to trigger post, put, delete operation
+   * @param userAction user action object to identify tge type of action
+   */
   public triggerUserAction(userAction: IUserAction): void {
     switch (userAction.actionType) {
       case ActionType.DELETE:

@@ -179,7 +179,7 @@ export class CommonLayoutComponent implements OnInit, OnChanges {
       const idx = this.entityData.findIndex(
         (entity: any) => entity[key] === rawData[key]
       );
-      if (idx) {
+      if (idx !== -1) {
         this.bannerMessage = 'Field already exists';
         this.initializeAddForm();
         setTimeout(() => {
