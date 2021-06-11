@@ -2,26 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.0.
 
-## Development server
+## Steps to run the application
+- navigate to the hospital-app folder and run `npm install`
+- navigate to server folder inside hospital-app and run `npm install`
+- Inside the server folder run `node index` this will spin up a node server on port `5000`
+- come back to hospital-app folder and run `npm start` this will start the angular server on port `4200`
+- Now open `http://localhost:4200` and the app should be working
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![Screenshot 2021-06-11 at 8 22 50 PM](https://user-images.githubusercontent.com/5796149/121706074-e8b4ee00-caf2-11eb-8db5-690d20033e43.png)
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
