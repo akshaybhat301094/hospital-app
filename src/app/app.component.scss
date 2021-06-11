@@ -1,0 +1,31 @@
+.application_container {
+  height: 100%;
+  position: relative;
+
+  header {
+    height: 80px;
+    background-color: rgb(70, 147, 242);
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    line-height: 80px;
+  }
+
+  footer {
+    height: 80px;
+    background-color: rgb(70, 147, 242);
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    line-height: 80px;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .main_content {
+    height: calc(100% - 160px);
+    width: 100%;
+  }
+}

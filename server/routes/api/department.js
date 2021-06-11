@@ -82,16 +82,16 @@ router.post("/", (req, res) => {
 /**
  * HTTP - DELETE api call
  */
-router.delete("/:departmentname", (req, res) => {
+router.delete("/:departmentname/:hospitalname", (req, res) => {
   const departmentName = req.params.departmentname;
+  const hospitalname = req.params.hospitalname;
   const existingDepartments = getDepartmentList();
-  const body = req.body;
   const filterData = existingDepartments.filter(
     (department) =>
       department.departmentname !== departmentName &&
-      department.hospitalname !== body.hospitalname
+      department.hospitalname !== hospitalname
   );
-  if (!body.hospitalname) {
+  if (!hospitalname) {
     return res
       .status(401)
       .send({ error: true, msg: "Hospital name missing in request body" });

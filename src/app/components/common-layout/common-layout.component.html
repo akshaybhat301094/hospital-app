@@ -1,0 +1,119 @@
+<div class="common_wrapper">
+  <div class="content_container">
+    <h2>{{ config.title }}</h2>
+
+    <!-- button container -->
+    <div class="btn_container">
+      <button (click)="sortByName()" *ngIf="entityData?.length > 0">
+        Sort by {{ config.sortLabel }} Name
+      </button>
+      <button *ngIf="config.enableBack" (click)="navigateBack()">Back</button>
+    </div>
+
+    <!-- dynamic grid content -->
+    <div class="table_wrapper">
+      <table>
+        <tr>
+          <th *ngFor="let heading of config.columnConfig">
+            {{ heading.title }}
+          </th>
+          <th *ngIf="config.enableViewMode">View Department</th>
+          <th>Actions</th>
+        </tr>
+        <!-- row data template -->
+        <ng-container *ngIf="entityData?.length > 0">
+          <tr *ngFor="let item of entityData; index as index">
+            <td *ngFor="let col of config.columnConfig">
+              <span *ngIf="!item.editMode">{{ item[col.field] }}</span>
+              <div class="form-control" *ngIf="item.editMode">
+                <input
+                  type="text"
+                  [formControl]="getControl(index, col.field)"
+                  [ngClass]="{
+                    'form-field-invalid':
+                      (getControl(index, col.field)?.errors?.required &&
+                        getControl(index, col.field)?.dirty) ||
+                      !getControl(index, col.field)?.value
+                  }"
+                />
+                <small *ngIf="!getControl(index, col.field).valid"
+                  >Required Field</small
+                >
+              </div>
+            </td>
+            <td *ngIf="config.enableViewMode">
+              <button (click)="navigateToDept(index)">view</button>
+            </td>
+            <td>
+              <!-- edit and delete button -->
+              <ng-container *ngIf="!item.editMode">
+                <span (click)="editRow(index)">
+                  <i class="material-icons"> edit </i></span
+                >
+                <span (click)="deleteRow(index)">
+                  <i class="material-icons"> delete </i></span
+                >
+              </ng-container>
+
+              <!-- save and cancel button -->
+              <ng-container *ngIf="item.editMode">
+                <span (click)="saveEdit(index)">
+                  <i class="material-icons"> save </i></span
+                >
+                <span (click)="cancelEdit(index)">
+                  <i class="material-icons"> cancel </i></span
+                >
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
+
+        <!-- add form template -->
+        <tr>
+          <td *ngFor="let col of config.columnConfig">
+            <div class="form-control" *ngIf="enableAddMode">
+              <input
+                type="text"
+                [formControl]="getAddControl(col.field)"
+                [ngClass]="{
+                  'form-field-invalid':
+                    (getAddControl(col.field)?.errors?.required &&
+                      getAddControl(col.field)?.dirty) ||
+                    !getAddControl(col.field)?.value
+                }"
+              />
+              <small *ngIf="!getAddControl(col.field).valid"
+                >Required Field</small
+              >
+            </div>
+          </td>
+          <td *ngIf="config.enableViewMode"></td>
+          <td>
+            <!-- save and cancel button -->
+            <ng-container *ngIf="enableAddMode">
+              <span (click)="addData()">
+                <i class="material-icons"> save </i></span
+              >
+              <span (click)="enableAddMode = false">
+                <i class="material-icons"> cancel </i></span
+              >
+            </ng-container>
+            <ng-container *ngIf="!enableAddMode">
+              <span (click)="enableAdd()">
+                <i class="material-icons"> add_circle </i></span
+              >
+            </ng-container>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- no results found template -->
+    <div
+      class="no_records_container"
+      *ngIf="!entityData || entityData.length === 0"
+    >
+      No Records Found
+    </div>
+  </div>
+</div>
